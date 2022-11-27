@@ -6,16 +6,16 @@ const routes = [
     component: () => import("../views/userAuthentication.vue"),
   },
   {
-    path: "/dashboard",
-    name: "Dashboard",
+    path: "/home",
+    name: "Home",
     meta: { authorized: true },
-    component: () => import("../views/dashboard.vue"),
+    component: () => import("../views/home.vue"),
   },
   {
-    path: "/calendar",
-    name: "Calendar",
+    path: "/discover",
+    name: "Discover",
     meta: { authorized: true },
-    component: () => import("../views/calendar.vue"),
+    component: () => import("../views/discover.vue"),
   },
 ];
 export default routes;

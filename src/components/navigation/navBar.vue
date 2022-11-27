@@ -40,9 +40,10 @@ export default {
   data: () => ({
     showNavbarDrawer: true,
     items: [
-      { title: "Dashboard", icon: "mdi-home", route: "/dashboard" },
-      { title: "Calendar", icon: "mdi-calendar-blank", route: "/calendar" },
+      { title: "Home", icon: "mdi-home", route: "/home" },
+      { title: "Discover", icon: "mdi-compass", route: "/discover" },
     ],
   }),
 };
 </script>
+<style></style>

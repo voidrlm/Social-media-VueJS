@@ -23,5 +23,11 @@ const routes = [
     meta: { authorized: true },
     component: () => import("../views/trending.vue"),
   },
+  {
+    path: "/messages",
+    name: "Messages",
+    meta: { authorized: true },
+    component: () => import("../views/messages.vue"),
+  },
 ];
 export default routes;

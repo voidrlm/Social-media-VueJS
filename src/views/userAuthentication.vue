@@ -93,7 +93,7 @@ export default {
       JSON.stringify(this.$store.getters.currentUser) !== JSON.stringify({})
     ) {
       this.$router.push({
-        path: "/dashboard",
+        path: "/home",
       });
     }
   },
@@ -126,7 +126,7 @@ export default {
             });
             if (this.$router.currentRoute.path === "/") {
               this.$router.push({
-                path: "/dashboard",
+                path: "/home",
               });
             }
           } else alert("Cannot find user.");

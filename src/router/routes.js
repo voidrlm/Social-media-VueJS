@@ -17,5 +17,11 @@ const routes = [
     meta: { authorized: true },
     component: () => import("../views/discover.vue"),
   },
+  {
+    path: "/trending",
+    name: "Trending",
+    meta: { authorized: true },
+    component: () => import("../views/trending.vue"),
+  },
 ];
 export default routes;

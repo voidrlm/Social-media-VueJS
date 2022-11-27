@@ -17,31 +17,29 @@
       {{ $store.getters.currentUser.name }} !</v-card-title
     >
 
-    <v-layout justify-start class="mt-7">
-      <v-card height="230" width="170" color="blue" class="mr-4">
-        <v-img
-          height="230"
-          src="https://images.unsplash.com/photo-1525138079-9424be9df411?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
-        ></v-img>
-      </v-card>
-      <v-card height="230" width="170" color="blue" class="mr-4">
-        <v-img
-          height="230"
-          src="https://images.unsplash.com/photo-1523224949444-170258978eef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
-        ></v-img>
-      </v-card>
-      <v-card height="230" width="170" color="blue" class="mr-4">
-        <v-img
-          height="230"
-          src="https://images.unsplash.com/photo-1551818633-579bccc6210c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
-        ></v-img>
-      </v-card>
-      <v-card height="230" width="170" color="blue" class="mr-4">
-        <v-img
-          height="230"
-          src="https://images.unsplash.com/photo-1478296046035-d4fc77bec472?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-        ></v-img>
-      </v-card>
+    <v-layout justify-start class="mt-3">
+      <v-slide-group v-model="model" class="pa-0" show-arrows>
+        <v-slide-item v-for="n in 15" :key="n" v-slot="{ active, toggle }">
+          <v-card
+            :color="active ? 'primary' : 'grey lighten-1'"
+            class="ma-4"
+            height="200"
+            width="100"
+            @click="toggle"
+          >
+            <v-row class="fill-height" align="center" justify="center">
+              <v-scale-transition>
+                <v-icon
+                  v-if="active"
+                  color="white"
+                  size="48"
+                  v-text="'mdi-close-circle-outline'"
+                ></v-icon>
+              </v-scale-transition>
+            </v-row>
+          </v-card>
+        </v-slide-item>
+      </v-slide-group>
     </v-layout>
     <v-card class="mx-auto mt-5" color="secondary lighten-3">
       <v-card-title>
@@ -79,7 +77,7 @@
 <script>
 export default {
   name: "home-component",
-  data: () => ({}),
+  data: () => ({ model: null }),
   computed: {
     getGreetingData() {
       var today = new Date();

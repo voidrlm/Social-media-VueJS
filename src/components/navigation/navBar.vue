@@ -43,6 +43,7 @@ export default {
       { title: "Home", icon: "mdi-home", route: "/home" },
       { title: "Discover", icon: "mdi-compass", route: "/discover" },
       { title: "Trending", icon: "mdi-chart-line", route: "/trending" },
+      { title: "Messages", icon: "mdi-message-bulleted", route: "/messages" },
     ],
   }),
 };

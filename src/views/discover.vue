@@ -1,7 +1,27 @@
 <template>
   <div>
-    <v-layout class="ma-10">
+    <v-layout class="mx-8 mt-5">
       <div>Latest Feed</div>
+    </v-layout>
+    <v-row class="mt-5 ma-5">
+      <v-col v-for="(image, i) in feedImages" :key="i">
+        <v-card elevation="12" height="230" width="210" color="blue">
+          <v-img height="230" :src="image"></v-img>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-layout class="mx-8 mt-5">
+      <div>Explore based on your location</div>
+    </v-layout>
+    <v-row class="mt-5 ma-5">
+      <v-col v-for="(image, i) in feedImages" :key="i">
+        <v-card elevation="12" height="230" width="210" color="blue">
+          <v-img height="230" :src="image"></v-img>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-layout class="mx-8 mt-5">
+      <div>Things you might like</div>
     </v-layout>
     <v-row class="mt-5 ma-5">
       <v-col v-for="(image, i) in feedImages" :key="i">

@@ -52,29 +52,34 @@
       v-for="(post, index) in postsData"
       :key="index"
     >
-      <v-card-title>
-        <v-list-item class="grow">
-          <v-list-item-avatar color="accent">
-            <v-img
-              class="elevation-6"
-              :alt="post.uploadedBy"
-              :src="post.uploaderAvatar"
-            ></v-img>
-          </v-list-item-avatar>
+      <v-tooltip right>
+        <template v-slot:activator="{ on, attrs }">
+          <v-card-title v-bind="attrs" v-on="on">
+            <v-list-item class="grow">
+              <v-list-item-avatar color="accent">
+                <v-img
+                  class="elevation-6"
+                  :alt="post.uploadedBy"
+                  :src="post.uploaderAvatar"
+                ></v-img>
+              </v-list-item-avatar>
 
-          <v-list-item-content>
-            <v-list-item-title
-              >{{ post.uploadedBy
-              }}<v-icon
-                size="15"
-                class="ml-2"
-                :class="post.isUploaderOnline ? 'green--text' : ''"
-                v-text="'mdi-circle'"
-              ></v-icon
-            ></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-card-title>
+              <v-list-item-content>
+                <v-list-item-title
+                  >{{ post.uploadedBy
+                  }}<v-icon
+                    size="15"
+                    class="ml-2"
+                    :class="post.isUploaderOnline ? 'green--text' : ''"
+                    v-text="'mdi-circle'"
+                  ></v-icon
+                ></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-card-title>
+        </template>
+        <span>Left tooltip</span>
+      </v-tooltip>
 
       <v-card-text class="text-h5 mx-4 font-weight-bold">
         {{ post.text }}
@@ -121,9 +126,9 @@ export default {
   created() {
     postsData.map((post) => {
       let userObject = friendsData.filter(function (user) {
-        return user.id === post.userId;
+        return user.userId === post.userId;
       });
-      post.uploaderId = userObject[0].id;
+      post.uploaderId = userObject[0].userId;
       post.uploadedBy = userObject[0].name;
       post.uploaderAvatar = userObject[0].icon;
       post.isUploaderOnline = userObject[0].isOnline;

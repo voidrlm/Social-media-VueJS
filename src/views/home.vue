@@ -19,10 +19,15 @@
 
     <v-layout justify-start class="mt-3">
       <v-slide-group v-model="model" class="pa-0" show-arrows>
-        <v-slide-item v-for="n in 15" :key="n" v-slot="{ active, toggle }">
+        <v-slide-item
+          v-for="n in 8"
+          :key="n"
+          v-slot="{ active, toggle }"
+          class="rounded-xl"
+        >
           <v-card
             :color="active ? 'primary' : 'grey lighten-1'"
-            class="ma-4"
+            class="ma-2"
             height="200"
             width="100"
             @click="toggle"
@@ -41,7 +46,12 @@
         </v-slide-item>
       </v-slide-group>
     </v-layout>
-    <v-card class="mx-auto mt-5" color="secondary lighten-3">
+    <v-card
+      class="mx-auto mt-5"
+      color="secondary lighten-3"
+      v-for="n in 8"
+      :key="n"
+    >
       <v-card-title>
         <v-list-item class="grow">
           <v-list-item-avatar color="accent">

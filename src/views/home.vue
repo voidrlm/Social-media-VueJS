@@ -49,35 +49,51 @@
     <v-card
       class="mx-auto mt-5"
       color="secondary lighten-3"
-      v-for="n in 8"
-      :key="n"
+      v-for="(post, index) in postsData"
+      :key="index"
     >
       <v-card-title>
         <v-list-item class="grow">
           <v-list-item-avatar color="accent">
             <v-img
               class="elevation-6"
-              alt=""
-              src="https://avatars.githubusercontent.com/u/117543015?v=4"
+              :alt="post.uploadedBy"
+              :src="post.uploaderAvatar"
             ></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>Arjun</v-list-item-title>
+            <v-list-item-title
+              >{{ post.uploadedBy
+              }}<v-icon
+                size="15"
+                class="ml-2"
+                :class="post.isUploaderOnline ? 'green--text' : ''"
+                v-text="'mdi-circle'"
+              ></v-icon
+            ></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-card-title>
 
-      <v-card-text class="text-h5 font-weight-bold"> lmao bro. </v-card-text>
-
+      <v-card-text class="text-h5 mx-4 font-weight-bold">
+        {{ post.text }}
+      </v-card-text>
+      <v-img
+        v-if="post.img"
+        class="elevation-0"
+        :alt="post.uploadedBy"
+        :src="post.img"
+        max-height="500"
+        contain
+      ></v-img>
       <v-card-actions>
         <v-list-item class="grow">
           <v-row align="center" justify="end">
             <v-icon class="mr-1"> mdi-heart </v-icon>
-            <span class="subheading mr-2">69</span>
+            <span class="subheading mr-2">{{ post.likes }}</span>
             <span class="mr-1">·</span>
             <v-icon class="mr-1"> mdi-share-variant </v-icon>
-            <span class="subheading">45</span>
           </v-row>
         </v-list-item>
       </v-card-actions>
@@ -85,9 +101,11 @@
   </v-container>
 </template>
 <script>
+import { postsData } from "@/resources/postsDatabase";
+import { friendsData } from "@/resources/friendsDatabase";
 export default {
   name: "home-component",
-  data: () => ({ model: null }),
+  data: () => ({ postsData, friendsData, model: null }),
   computed: {
     getGreetingData() {
       var today = new Date();
@@ -99,6 +117,17 @@ export default {
         ? "Good Evening"
         : "Good Afternoon";
     },
+  },
+  created() {
+    postsData.map((post) => {
+      let userObject = friendsData.filter(function (user) {
+        return user.id === post.userId;
+      });
+      post.uploaderId = userObject[0].id;
+      post.uploadedBy = userObject[0].name;
+      post.uploaderAvatar = userObject[0].icon;
+      post.isUploaderOnline = userObject[0].isOnline;
+    });
   },
   methods: {},
 };

@@ -35,7 +35,7 @@
       v-for="(post, index) in postsData"
       :key="index"
     >
-      <v-card-title v-bind="attrs" v-on="on">
+      <v-card-title>
         <v-list-item class="grow">
           <v-list-item-avatar color="accent">
             <v-img

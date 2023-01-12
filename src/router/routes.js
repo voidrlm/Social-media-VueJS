@@ -24,7 +24,7 @@ const routes = [
     component: () => import("../views/trending.vue"),
   },
   {
-    path: "/messages",
+    path: "/messages/:user",
     name: "Messages",
     meta: { authorized: true },
     component: () => import("../views/messages.vue"),

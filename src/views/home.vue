@@ -31,40 +31,35 @@
     </v-layout>
     <v-card
       class="mx-auto mt-5"
-      color="secondary lighten-3"
+      color="secondary "
       v-for="(post, index) in postsData"
       :key="index"
     >
-      <v-tooltip right>
-        <template v-slot:activator="{ on, attrs }">
-          <v-card-title v-bind="attrs" v-on="on">
-            <v-list-item class="grow">
-              <v-list-item-avatar color="accent">
-                <v-img
-                  class="elevation-6"
-                  :alt="post.uploadedBy"
-                  :src="post.uploaderAvatar"
-                ></v-img>
-              </v-list-item-avatar>
+      <v-card-title v-bind="attrs" v-on="on">
+        <v-list-item class="grow">
+          <v-list-item-avatar color="accent">
+            <v-img
+              class="elevation-6"
+              :alt="post.uploadedBy"
+              :src="post.uploaderAvatar"
+            ></v-img>
+          </v-list-item-avatar>
 
-              <v-list-item-content>
-                <v-list-item-title
-                  >{{ post.uploadedBy
-                  }}<v-icon
-                    size="15"
-                    class="ml-2"
-                    :class="post.isUploaderOnline ? 'green--text' : ''"
-                    v-text="'mdi-circle'"
-                  ></v-icon
-                ></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-card-title>
-        </template>
-        <span>Left tooltip</span>
-      </v-tooltip>
+          <v-list-item-content>
+            <v-list-item-title
+              >{{ post.uploadedBy
+              }}<v-icon
+                size="15"
+                class="ml-2"
+                :class="post.isUploaderOnline ? 'green--text' : ''"
+                v-text="'mdi-circle'"
+              ></v-icon
+            ></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card-title>
 
-      <v-card-text class="text-h5 mx-4 font-weight-bold">
+      <v-card-text class="text-h5 mx-4 mt-n2 font-weight-bold">
         {{ post.text }}
       </v-card-text>
       <v-img

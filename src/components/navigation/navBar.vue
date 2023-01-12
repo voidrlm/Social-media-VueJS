@@ -34,7 +34,7 @@
           v-for="(item, index) in friendsData"
           :key="index"
           router
-          @click="showMessages()"
+          @click="showMessages(item)"
           class="mb-3"
         >
           <v-avatar class="mx-5" size="40">
@@ -77,8 +77,16 @@ export default {
     ],
   }),
   methods: {
-    showMessages() {
-      console.log("show messages");
+    showMessages(user) {
+      if (
+        this.$router.currentRoute.path !==
+        "/messages/" + user.name + user.userId
+      ) {
+        this.$router.push({
+          path: "/messages/" + user.name + user.userId,
+        });
+        this.$store.dispatch("setUserFromNavbar", user);
+      }
     },
   },
 };

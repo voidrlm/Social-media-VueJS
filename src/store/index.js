@@ -24,7 +24,7 @@ const store = new Vuex.Store({
       context.commit("setCurrentUser", currentUser);
     },
     setUserFromNavbar(context, selectedUserFromNavbar) {
-      context.commit("setCurrentUser", selectedUserFromNavbar);
+      context.commit("setUserFromNavbar", selectedUserFromNavbar);
     },
 
     resetState() {

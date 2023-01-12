@@ -19,29 +19,12 @@
 
     <v-layout justify-start class="mt-3">
       <v-slide-group v-model="model" class="pa-0" show-arrows>
-        <v-slide-item
-          v-for="n in 8"
-          :key="n"
-          v-slot="{ active, toggle }"
-          class="rounded-xl"
-        >
-          <v-card
-            :color="active ? 'primary' : 'grey lighten-1'"
-            class="ma-2"
-            height="200"
-            width="100"
-            @click="toggle"
-          >
-            <v-row class="fill-height" align="center" justify="center">
-              <v-scale-transition>
-                <v-icon
-                  v-if="active"
-                  color="white"
-                  size="48"
-                  v-text="'mdi-close-circle-outline'"
-                ></v-icon>
-              </v-scale-transition>
-            </v-row>
+        <v-slide-item v-for="n in 50" :key="n" class="rounded-xl">
+          <v-card class="ma-2" height="200" width="100">
+            <v-img
+              height="200"
+              src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+            ></v-img>
           </v-card>
         </v-slide-item>
       </v-slide-group>

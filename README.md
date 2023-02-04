@@ -1,9 +1,12 @@
 # Social-media
 Creating a simple social media app using vue and vuetify
 
-## View Preview
+## Live Demo
+Use a dummy e-mail and password to signup and continue
 
-https://imgur.com/a/KsSEIJ4
+<p>
+    <a href="https://voidrlm.github.io/Social-media-VueJS/#/" target="_blank">Online Demo</a>
+</p>
 
 ## Requirements
 

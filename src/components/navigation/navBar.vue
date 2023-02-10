@@ -111,4 +111,12 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+::v-deep ::-webkit-scrollbar {
+  width: 5px;
+}
+::v-deep ::-webkit-scrollbar-thumb {
+  background: rgb(145, 145, 145);
+  border-radius: 20px;
+}
+</style>

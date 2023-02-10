@@ -30,7 +30,8 @@
       </v-slide-group>
     </v-layout>
     <v-card
-      class="mx-auto mt-5"
+      class="mx-auto mt-5 rounded-xl"
+      elevation="0"
       color="secondary "
       v-for="(post, index) in postsData"
       :key="index"

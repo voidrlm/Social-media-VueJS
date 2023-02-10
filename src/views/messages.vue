@@ -30,7 +30,7 @@
           v-for="(message, index) in messages"
           :key="index"
           flat
-          class="pa-2"
+          class="pa-2 mx-n2"
           id="textArea"
         >
           <v-list-item
@@ -40,7 +40,14 @@
           >
             <v-list-item-content class="pa-0">
               <v-card class="flex-none rounded-xl rounded-bl-0" flat>
-                <v-card-text class="accent lighten-4 pa-2">
+                <v-card-text
+                  class="pa-2"
+                  :class="
+                    $vuetify.theme.dark
+                      ? 'grey lighten-4  black--text'
+                      : 'grey darken-1 white--text'
+                  "
+                >
                   <span class="body-2">{{ message.message }}</span>
                 </v-card-text>
               </v-card>
@@ -58,7 +65,14 @@
                 class="flex-none rounded-xl rounded-br-0"
                 flat
               >
-                <v-card-text class="white--text pa-2">
+                <v-card-text
+                  class="pa-2"
+                  :class="
+                    $vuetify.theme.dark
+                      ? 'grey darken-2  white--text'
+                      : 'grey lighten-1 black--text'
+                  "
+                >
                   <span class="body-2">{{ message.message }}</span>
                 </v-card-text>
               </v-card>

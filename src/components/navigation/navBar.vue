@@ -56,12 +56,10 @@
         </v-list-item>
       </v-list>
       <template v-slot:append>
-        <v-card-title class="subtitle-1 font-weight-medium mb-n5 justify-center"
-          >Made By Arjun.V
+        <div class="text-center">
           <v-btn
             v-for="(link, i) in links"
             :key="i"
-            color="white"
             icon
             rounded
             class="my-2"
@@ -69,8 +67,8 @@
             target="_blank"
           >
             <v-icon>{{ link.icon }}</v-icon>
-          </v-btn></v-card-title
-        >
+          </v-btn>
+        </div>
       </template>
     </v-navigation-drawer>
     <app-bar @openCloseNavBar="showNavbarDrawer = !showNavbarDrawer" />

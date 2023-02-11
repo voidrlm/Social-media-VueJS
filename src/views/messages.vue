@@ -1,6 +1,9 @@
 <template>
   <v-container fluid>
     <v-app-bar app elevation="0">
+      <v-btn class="mx-0" icon @click="$router.go(-1)"
+        ><v-icon>mdi-chevron-left-circle</v-icon></v-btn
+      >
       <v-list-item-avatar size="45" class="mx-2 mr-3">
         <v-img :src="$store.getters.selectedUserFromNavbar.icon"></v-img>
       </v-list-item-avatar>

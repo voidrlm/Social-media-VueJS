@@ -79,7 +79,6 @@ export default {
       });
 
       this.selectedStory.user = user[0];
-      console.log(this.selectedStory);
     },
   },
 };

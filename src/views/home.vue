@@ -16,19 +16,7 @@
       >{{ getGreetingData }},
       {{ $store.getters.currentUser.name }} !</v-card-title
     >
-
-    <v-layout justify-start class="mt-3">
-      <v-slide-group v-model="model" class="pa-0" show-arrows>
-        <v-slide-item v-for="n in 50" :key="n" class="rounded-xl">
-          <v-card class="ma-2" height="200" width="100">
-            <v-img
-              height="200"
-              src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-            ></v-img>
-          </v-card>
-        </v-slide-item>
-      </v-slide-group>
-    </v-layout>
+    <storiesPreview />
     <v-card
       class="mx-auto mt-5 rounded-xl"
       elevation="0"
@@ -91,11 +79,12 @@
   </v-container>
 </template>
 <script>
+import storiesPreview from "@/components/stories/storiesPreview.vue";
 import { postsData } from "@/resources/postsDatabase";
 import { friendsData } from "@/resources/friendsDatabase";
 export default {
   name: "home-component",
-  data: () => ({ postsData, friendsData, model: null }),
+  data: () => ({ postsData, friendsData }),
   computed: {
     getGreetingData() {
       var today = new Date();
@@ -108,6 +97,7 @@ export default {
         : "Good Afternoon";
     },
   },
+  components: { storiesPreview },
   created() {
     postsData.map((post) => {
       let userObject = friendsData.filter(function (user) {

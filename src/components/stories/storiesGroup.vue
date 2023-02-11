@@ -8,14 +8,19 @@
       >
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card class="ma-2" height="200" width="100">
+            <v-card
+              class="ma-2"
+              height="200"
+              width="100"
+              style="cursor: pointer"
+            >
               <v-img height="200" :src="story.img">
                 <v-fade-transition>
                   <v-overlay
                     v-if="hover || story.isViewed"
                     absolute
                     color="black"
-                    ><v-icon size="50" v-if="!story.isViewed"
+                    ><v-icon size="50" v-if="!story.isViewed || hover"
                       >mdi-magnify</v-icon
                     >
                   </v-overlay>

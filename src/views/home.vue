@@ -16,7 +16,7 @@
       >{{ getGreetingData }},
       {{ $store.getters.currentUser.name }} !</v-card-title
     >
-    <storiesPreview />
+    <storiesGroup />
     <v-card
       class="mx-auto mt-5 rounded-xl"
       elevation="0"
@@ -79,7 +79,7 @@
   </v-container>
 </template>
 <script>
-import storiesPreview from "@/components/stories/storiesPreview.vue";
+import storiesGroup from "@/components/stories/storiesGroup.vue";
 import { postsData } from "@/resources/postsDatabase";
 import { friendsData } from "@/resources/friendsDatabase";
 export default {
@@ -97,7 +97,7 @@ export default {
         : "Good Afternoon";
     },
   },
-  components: { storiesPreview },
+  components: { storiesGroup },
   created() {
     postsData.map((post) => {
       let userObject = friendsData.filter(function (user) {

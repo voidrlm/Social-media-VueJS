@@ -6,9 +6,24 @@
         :key="index"
         class="rounded-xl"
       >
-        <v-card class="ma-2" height="200" width="100">
-          <v-img height="200" :src="story.img"></v-img>
-        </v-card>
+        <v-hover>
+          <template v-slot:default="{ hover }">
+            <v-card class="ma-2" height="200" width="100">
+              <v-img height="200" :src="story.img">
+                <v-fade-transition>
+                  <v-overlay
+                    v-if="hover || story.isViewed"
+                    absolute
+                    color="black"
+                    ><v-icon size="50" v-if="!story.isViewed"
+                      >mdi-magnify</v-icon
+                    >
+                  </v-overlay>
+                </v-fade-transition></v-img
+              >
+            </v-card>
+          </template>
+        </v-hover>
       </v-slide-item>
     </v-slide-group>
   </v-layout>

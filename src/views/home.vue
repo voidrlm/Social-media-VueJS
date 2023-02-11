@@ -74,8 +74,14 @@
       <v-card-actions>
         <v-list-item class="grow">
           <v-row align="center" justify="end">
-            <v-icon class="mr-1"> mdi-heart </v-icon>
-            <span class="subheading mr-2">{{ post.likes }}</span>
+            <v-btn icon @click="post.isLiked = !post.isLiked"
+              ><v-icon :color="post.isLiked ? 'pink' : ''">
+                mdi-heart
+              </v-icon></v-btn
+            >
+            <span class="subheading mr-2">{{
+              post.isLiked ? post.likes + 1 : post.likes
+            }}</span>
             <span class="mr-1">·</span>
             <v-icon class="mr-1"> mdi-share-variant </v-icon>
           </v-row>

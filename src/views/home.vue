@@ -8,20 +8,52 @@
         >
         <storiesGroup />
         <postCard :postsData="postsData" />
-        <v-fab-transition>
-            <v-btn
-                class="rounded-xl"
-                elevation="20"
-                :class="$vuetify.theme.dark ? 'black--text white' : 'black--text accent'"
-                :x-large="$vuetify.breakpoint.mdAndUp"
-                :large="$vuetify.breakpoint.smAndDown"
-                bottom
-                fixed
-                right
-            >
-                <v-icon class="mr-2">mdi-plus-circle</v-icon>New Post
-            </v-btn>
-        </v-fab-transition>
+        <v-dialog transition="dialog-bottom-transition" max-width="800" content-class="rounded-xl">
+            <template v-slot:activator="{ on, attrs }">
+                <v-fab-transition>
+                    <v-btn
+                        class="rounded-xl"
+                        elevation="20"
+                        :class="$vuetify.theme.dark ? 'black--text white' : 'black--text accent'"
+                        :x-large="$vuetify.breakpoint.mdAndUp"
+                        :large="$vuetify.breakpoint.smAndDown"
+                        bottom
+                        fixed
+                        right
+                        v-bind="attrs"
+                        v-on="on"
+                    >
+                        <v-icon class="mr-2">mdi-plus-circle</v-icon>New Post
+                    </v-btn>
+                </v-fab-transition>
+            </template>
+            <template v-slot:default="dialog">
+                <v-card class="rounded-xl">
+                    <v-toolbar color="accent" elevation="0" class="text-h6">Create a new post.</v-toolbar>
+                    <v-card-text class="pb-0 mb-n4">
+                        <v-textarea
+                            label="What's happening?"
+                            solo-inverted
+                            flat
+                            class="rounded-lg mt-5"
+                            counter="500"
+                            maxlength="500"
+                        ></v-textarea>
+                        <v-text-field
+                            label="Image Link"
+                            solo-inverted
+                            elevation="0"
+                            class="rounded-lg mt-2"
+                            flat
+                        ></v-text-field>
+                    </v-card-text>
+                    <v-card-actions class="justify-end">
+                        <v-btn elevation="0" class="ma-3 pa-3" rounded @click="dialog.value = false">Close</v-btn>
+                        <v-btn elevation="0" class="ma-3 pa-3" rounded @click="dialog.value = false">Post</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </template>
+        </v-dialog>
     </v-container>
 </template>
 <script>
@@ -52,6 +84,15 @@ export default {
             post.isUploaderOnline = userObject[0].isOnline;
         });
     },
-    methods: {},
+    methods: {
+        isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (err) {
+                return false;
+            }
+        },
+    },
 };
 </script>

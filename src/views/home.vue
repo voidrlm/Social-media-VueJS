@@ -19,7 +19,7 @@
                 fixed
                 right
             >
-                <v-icon>mdi-plus-circle</v-icon>New Post
+                <v-icon class="mr-2">mdi-plus-circle</v-icon>New Post
             </v-btn>
         </v-fab-transition>
     </v-container>

@@ -7,7 +7,7 @@
             >{{ getGreetingData }}, {{ $store.getters.currentUser.name }} !</v-card-title
         >
         <storiesGroup />
-        <postCard :postsData="postsData" />
+        <postCard :postsData="posts" />
         <v-dialog
             transition="dialog-bottom-transition"
             max-width="800"
@@ -69,7 +69,10 @@
                             class="ma-3 pa-3"
                             :disabled="!validPost"
                             rounded
-                            @click="showNewPost = false"
+                            @click="
+                                showNewPost = false;
+                                addnewPost();
+                            "
                             >Post</v-btn
                         >
                     </v-card-actions>
@@ -85,7 +88,14 @@ import { postsData } from '@/resources/postsDatabase';
 import { friendsData } from '@/resources/friendsDatabase';
 export default {
     name: 'home-component',
-    data: () => ({ postsData, friendsData, showNewPost: false, validPost: true, postDescription: '', imgLink: '' }),
+    data: () => ({
+        posts: [...postsData],
+        friends: [...friendsData],
+        showNewPost: false,
+        validPost: true,
+        postDescription: '',
+        imgLink: '',
+    }),
     computed: {
         getGreetingData() {
             var today = new Date();
@@ -96,19 +106,50 @@ export default {
     },
     components: { storiesGroup, postCard },
     created() {
-        postsData.map((post) => {
-            let userObject = friendsData.filter(function (user) {
-                return user.userId === post.userId;
-            });
-            post.uploaderId = userObject[0].userId;
-            post.uploadedBy = userObject[0].name;
-            post.uploaderAvatar = userObject[0].icon;
-            post.isUploaderOnline = userObject[0].isOnline;
-        });
+        this.updatePosts();
     },
     methods: {
+        updatePosts() {
+            this.posts.map((post) => {
+                var userObject;
+                if (post.userId == this.$store.getters.currentUser.name) {
+                    userObject = [
+                        {
+                            userId: this.$store.getters.currentUser.name,
+                            name: this.$store.getters.currentUser.name,
+                            icon: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+                            isOnline: true,
+                        },
+                    ];
+                } else {
+                    userObject = this.friends.filter(function (user) {
+                        return user.userId.toString() === post.userId.toString();
+                    });
+                }
+
+                post.uploaderId = userObject[0].userId;
+                post.uploadedBy = userObject[0].name;
+                post.uploaderAvatar = userObject[0].icon;
+                post.isUploaderOnline = userObject[0].isOnline;
+            });
+            this.posts.sort((a, b) => (a.timeStamp < b.timeStamp ? 1 : -1));
+        },
         isValidUrl() {
             return this.imgLink.match(/\.(jpeg|jpg|gif|png)$/) != null;
+        },
+        addnewPost() {
+            let timeStamp = Date.now();
+            let newPost = {
+                userId: this.$store.getters.currentUser.name,
+                postId: timeStamp + '-' + this.$store.getters.currentUser.name,
+                text: this.postDescription,
+                ...(this.imgLink !== '' && { img: this.imgLink }),
+                likes: 0,
+                isLiked: false,
+                timeStamp: timeStamp,
+            };
+            this.posts.push(newPost);
+            this.updatePosts();
         },
     },
 };

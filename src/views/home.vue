@@ -30,26 +30,36 @@
             <template v-slot:default="dialog">
                 <v-card class="rounded-xl">
                     <v-toolbar color="accent" elevation="0" class="text-h6">Create a new post.</v-toolbar>
-                    <v-card-text class="pb-0 mb-n4">
-                        <v-textarea
-                            label="What's happening?"
-                            solo-inverted
-                            flat
-                            class="rounded-lg mt-5"
-                            counter="500"
-                            maxlength="500"
-                        ></v-textarea>
-                        <v-text-field
-                            label="Image Link"
-                            solo-inverted
-                            elevation="0"
-                            class="rounded-lg mt-2"
-                            flat
-                        ></v-text-field>
-                    </v-card-text>
-                    <v-card-actions class="justify-end">
+                    <v-form v-model="validPost">
+                        <v-card-text class="pb-0 mb-n4">
+                            <v-textarea
+                                label="What's happening?"
+                                solo-inverted
+                                flat
+                                class="rounded-lg mt-5"
+                                counter="500"
+                                maxlength="500"
+                                :rules="[(v) => !!v || '']"
+                            ></v-textarea>
+                            <v-text-field
+                                label="Image Link"
+                                solo-inverted
+                                elevation="0"
+                                class="rounded-lg mt-2"
+                                flat
+                            ></v-text-field>
+                        </v-card-text>
+                    </v-form>
+                    <v-card-actions :class="!$vuetify.breakpoint.xsOnly ? 'justify-end' : 'justify-center'">
                         <v-btn elevation="0" class="ma-3 pa-3" rounded @click="dialog.value = false">Close</v-btn>
-                        <v-btn elevation="0" class="ma-3 pa-3" rounded @click="dialog.value = false">Post</v-btn>
+                        <v-btn
+                            elevation="0"
+                            class="ma-3 pa-3"
+                            :disabled="!validPost"
+                            rounded
+                            @click="dialog.value = false"
+                            >Post</v-btn
+                        >
                     </v-card-actions>
                 </v-card>
             </template>
@@ -63,7 +73,7 @@ import { postsData } from '@/resources/postsDatabase';
 import { friendsData } from '@/resources/friendsDatabase';
 export default {
     name: 'home-component',
-    data: () => ({ postsData, friendsData }),
+    data: () => ({ postsData, friendsData, validPost: true }),
     computed: {
         getGreetingData() {
             var today = new Date();

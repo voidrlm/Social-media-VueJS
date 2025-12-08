@@ -1,8 +1,6 @@
-npm (Node Package Manager)
-
 # Social-media
 
-This is a simple social media app built using Vue.js and Vuetify. It allows users to view posts, stories, trending topics, and discover new content. User authentication and signup features have been removed for a streamlined experience.
+This is a simple social media app built using Vue.js and Vuetify. It allows users to view posts, stories, trending topics, and discover new content. User authentication and signup features have been removed for a streamlined experience. The application now uses a default Guest user and lands directly on the home page.
 
 ## Screenshot
 

@@ -11,19 +11,19 @@ export function initializeSession() {
   }
   let currentUserSession = store.getters.currentUser;
   if (JSON.stringify(currentUserSession) === JSON.stringify({})) {
-    if (router.currentRoute.path !== "/") {
-      router.push({
-        path: "/",
-      });
-    }
+    // if (router.currentRoute.path !== "/") {
+    //   router.push({
+    //     path: "/",
+    //   });
+    // }
   }
 }
 export function signOut() {
   window.$cookies.remove("uauth");
   store.dispatch("setCurrentUser", {});
-  if (router.currentRoute.path !== "/") {
-    router.push({
-      path: "/",
-    });
-  }
+  // if (router.currentRoute.path !== "/") {
+  //   router.push({
+  //     path: "/",
+  //   });
+  // }
 }

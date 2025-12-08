@@ -1,5 +1,9 @@
 const routes = [
   {
+    path: "/",
+    redirect: "/home",
+  },
+  {
     path: "/home",
     name: "Home",
     meta: { authorized: true },

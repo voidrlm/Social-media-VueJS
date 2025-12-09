@@ -24,8 +24,6 @@ export default new Vuetify({
         info: "#3B82F6",
         warning: "#F59E0B",
       },
-        success: "#45a5ae",
-      },
     },
   },
 });

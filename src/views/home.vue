@@ -1,13 +1,19 @@
 <template>
-    <v-container fluid>
-        <v-card-title :class="$vuetify.breakpoint.mdAndUp ? 'text-h4 mt-n7' : 'text-h5 justify-center'"
-            ><v-icon size="35" class="mr-2" :color="$vuetify.theme.dark ? 'white' : 'black'">{{
-                getGreetingData === 'Good Evening' ? 'mdi-moon-waning-crescent' : 'mdi-white-balance-sunny'
-            }}</v-icon
-            >{{ getGreetingData }}, {{ $store.getters.currentUser.name }} !</v-card-title
-        >
-        <storiesGroup />
-        <postCard :postsData="posts" />
+    <v-container class="pa-0" fluid>
+        <v-row justify="center" no-gutters>
+            <v-col cols="12" md="8" lg="6">
+                <div class="d-flex align-center mt-5 mb-2 px-4">
+                    <v-icon size="32" class="mr-3" color="orange">
+                        {{ getGreetingData === 'Good Evening' ? 'mdi-moon-waning-crescent' : 'mdi-white-balance-sunny' }}
+                    </v-icon>
+                    <span class="text-h5 font-weight-bold">{{ getGreetingData }}, {{ $store.getters.currentUser.name }}!</span>
+                </div>
+                
+                <storiesGroup />
+                <postCard :postsData="posts" />
+            </v-col>
+        </v-row>
+
         <v-dialog
             transition="dialog-bottom-transition"
             max-width="800"

@@ -1,54 +1,75 @@
 <template>
     <div>
         <v-card
-            class="mx-auto mt-5 rounded-xl"
-            elevation="0"
-            color="secondary "
+            class="mx-auto mt-5 rounded-xl transition-swing"
+            elevation="4"
+            color="secondary"
             v-for="(post, index) in postsData"
             :key="index"
+            max-width="700"
         >
-            <v-card-title>
-                <v-list-item class="grow">
-                    <v-list-item-avatar color="accent">
-                        <v-img class="elevation-6" :alt="post.uploadedBy" :src="post.uploaderAvatar"></v-img>
+            <v-card-title class="pb-2">
+                <v-list-item class="grow px-0">
+                    <v-list-item-avatar color="grey lighten-3" size="48">
+                        <v-img class="elevation-2" :alt="post.uploadedBy" :src="post.uploaderAvatar"></v-img>
                     </v-list-item-avatar>
 
                     <v-list-item-content>
-                        <v-list-item-title
-                            >{{ post.uploadedBy
-                            }}<v-icon
-                                size="15"
-                                class="ml-2"
-                                :class="post.isUploaderOnline ? 'green--text' : ''"
-                                v-text="'mdi-circle'"
-                            ></v-icon
-                        ></v-list-item-title>
+                        <v-list-item-title class="font-weight-bold text-h6"
+                            >{{ post.uploadedBy }}
+                            <v-icon
+                                size="12"
+                                class="ml-1 mb-1"
+                                color="blue"
+                                v-if="true" 
+                            >mdi-check-decagram</v-icon>
+                        </v-list-item-title>
+                        <v-list-item-subtitle class="caption grey--text">
+                            {{ new Date(post.timeStamp).toLocaleDateString() }}
+                        </v-list-item-subtitle>
                     </v-list-item-content>
+                    
+                    <v-spacer></v-spacer>
+                    <v-btn icon>
+                        <v-icon>mdi-dots-horizontal</v-icon>
+                    </v-btn>
                 </v-list-item>
             </v-card-title>
 
-            <v-card-text class="text-h5 mx-4 mt-n2 font-weight-bold">
+            <v-card-text class="text-body-1 mx-2 mb-2 black--text" style="line-height: 1.6;">
                 {{ post.text }}
             </v-card-text>
+            
             <v-img
                 v-if="post.img"
-                class="elevation-0"
+                class="rounded-lg mx-4 mb-2 elevation-1"
                 :alt="post.uploadedBy"
                 :src="post.img"
                 max-height="500"
                 contain
             ></v-img>
-            <v-card-actions>
-                <v-list-item class="grow">
-                    <v-row align="center" justify="end">
-                        <v-btn icon @click="post.isLiked = !post.isLiked"
-                            ><v-icon :color="post.isLiked ? 'pink' : ''"> mdi-heart </v-icon></v-btn
-                        >
-                        <span class="subheading mr-2">{{ post.isLiked ? post.likes + 1 : post.likes }}</span>
-                        <span class="mr-1">·</span>
-                        <v-icon class="mr-1"> mdi-share-variant </v-icon>
-                    </v-row>
-                </v-list-item>
+            
+            <v-divider class="mx-4"></v-divider>
+
+            <v-card-actions class="px-4 py-2">
+                <v-btn icon @click="post.isLiked = !post.isLiked" large>
+                    <v-icon :color="post.isLiked ? 'red' : ''"> {{ post.isLiked ? 'mdi-heart' : 'mdi-heart-outline' }} </v-icon>
+                </v-btn>
+                <span class="subheading mr-4 font-weight-medium">{{ post.isLiked ? post.likes + 1 : post.likes }}</span>
+                
+                <v-btn icon large>
+                    <v-icon>mdi-comment-outline</v-icon>
+                </v-btn>
+                <span class="subheading mr-4 font-weight-medium">24</span>
+
+                <v-spacer></v-spacer>
+                
+                <v-btn icon large>
+                    <v-icon>mdi-bookmark-outline</v-icon>
+                </v-btn>
+                <v-btn icon large>
+                    <v-icon>mdi-share-variant-outline</v-icon>
+                </v-btn>
             </v-card-actions>
         </v-card>
     </div>
